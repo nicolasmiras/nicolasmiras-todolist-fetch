@@ -5,13 +5,13 @@ const Home = () => {
 	const [tasks, setTasks] = useState([]);
 
 	// 
-	const handleInputChange = (event) => {
-		setInputValue(event.target.value);
+	const handleInputChange = (e) => {
+		setInputValue(e.target.value);
 	};
 
 	// agregao una tarea cuando aprieto enter
-	const handleKeyDown = (event) => {
-		if (event.key !== "Enter" || inputValue.trim() === "") return;
+	const handleKeyDown = (e) => {
+		if (e.key !== "Enter" || inputValue.trim() === "") return;
 		setTasks([...tasks, inputValue]);
 		setInputValue("");
 	};
@@ -22,7 +22,7 @@ const Home = () => {
 	};
 
 	return (
-		<div>
+		<>
 			<h1>Lista de Pendientes</h1>
 			<input
 				type="text"
@@ -47,7 +47,7 @@ const Home = () => {
 			<p>
 				{tasks.length} {tasks.length === 1 ? "item" : "items"} por hacer
 			</p>
-		</div>
+		</>
 	);
 };
 
