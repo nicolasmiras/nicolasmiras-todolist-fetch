@@ -4,13 +4,11 @@ const Home = () => {
 	const [inputValue, setInputValue] = useState("");
 	const [tasks, setTasks] = useState([]);
 
-	// 
-	const handleInputChange = (e) => {
+	const inputChange = (e) => {
 		setInputValue(e.target.value);
 	};
 
-	// agregao una tarea cuando aprieto enter
-	const handleKeyDown = (e) => {
+	const listDown = (e) => {
 		if (e.key !== "Enter" || inputValue.trim() === "") return;
 		setTasks([...tasks, inputValue]);
 		setInputValue("");
@@ -22,32 +20,34 @@ const Home = () => {
 	};
 
 	return (
-		<>
-			<h1>Lista de Pendientes</h1>
+		
+		<div className="container w-50">
+			<h1 className="text-center">Lista de Pendientes</h1>
 			<input
 				type="text"
 				className="form-control"
 				placeholder="¿Qué Tienes Pendiente?"
 				value={inputValue}
-				onChange={handleInputChange}
-				onKeyDown={handleKeyDown}
+				onChange={inputChange}
+				onKeyDown={listDown}
 			/>
 
-			<ul>
+			<ul className="list-group mt-3">
 				{tasks.map((task, index) => (
 					<li
-						key={index}>
+						key={index}
+						className="list-group-item d-flex justify-content-between align-items-center">
 						{task}
 						<button
-							onClick={() => deleteTask(index)}>
+							className="btn btn-danger" onClick={() => deleteTask(index)}>
 						</button>
 					</li>
 				))}
 			</ul>
-			<p>
+			<p className="text-secondary mt-2">
 				{tasks.length} {tasks.length === 1 ? "item" : "items"} por hacer
 			</p>
-		</>
+		</div>
 	);
 };
 
